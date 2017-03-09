@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<mate charset = "utf-8" />
+<title>后台管理</title>
+</head>
+<body>
+    <div class = "page">
+        <% include components/top.inc.ejs %>
+        <div class = "right-wrap">
+
+            <div>
+                <form action = "?" method = "post">
+                    标题:<input type = "text" name = "title" value=''></br>
+                    描述:<textarea name = "description"></textarea></br>
+                    链接：<input type = "text" name = "href" /></br>
+
+                    <input type="submit" value = "添加">
+                </form>
+                <table border='1' width="100%">
+                    <thead>
+                    
+                        <tr>
+                            <th>ID</th>
+                            <th>标题</th>
+                            <th>描述</th>
+                            <th>链接</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var i=0;i<banners.length;i++){ %>
+                    
+                    <tr>
+                        <td><%= banners[i].ID %></td>
+                        <td width="30%"><%= banners[i].title %></td>
+                        <td width="40%"><%= banners[i].description %></td>
+                        <td><%= banners[i].href %></td>
+                        <td><a href="?act=mod&id=<%= banners[i].ID %>">修改</a>
+                            <a href="?act=del&id=<%= banners[i].ID %>">删除</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+                     <% if(typeof mod_data != 'undefined'){ %>
+                <div>
+                    <form action = "?" method = "post">
+                        <input type ="hidden" name="mod_id" value="<%= mod_data.ID %>" />
+                        标题:<input type = "text" name = "title" value="<%= mod_data.title %>" /></br>
+                        描述:<textarea name = "description"><%= mod_data.description %></textarea></br>
+                        链接：<input type = "text" name = "href" value="<%= mod_data.href %>" /></br>
+
+                        <input type="submit" value = "修改" />
+                    </form>
+                  
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

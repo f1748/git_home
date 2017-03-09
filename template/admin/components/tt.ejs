@@ -1,0 +1,11 @@
+<% for(var i=0;i<banner.length;i++) { %>
+                        <tr>
+                            <td><%= banner[i].ID %></td>
+                            <td><%= banner[i].title %></td>
+                            <td width="50%"><%= banner[i].description %></td>
+                            <td><%= banner[i].href %></td>
+                            <td><a href = "?act=mod&id=<%= banner[i].ID%>" onclick="return confirm('真的要修改吗？')">修改</a>
+                            <a href = "?act=del&id=<%= banner[i].ID%>" onclick="return confirm('你真的要删除吗？')">删除</a>
+                            </td>
+                        </tr>
+                        <% } %>
